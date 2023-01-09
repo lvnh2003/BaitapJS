@@ -53,6 +53,21 @@ const students = [
 menu();
 function menu() {
     var option = prompt('Menu\n 1.Nhập dữ liệu\n 2.Xuất dữ liệu\n 3.Tìm sinh viene\n 4.Lọc ra sinh viên loại giỏi\n 5.Cộng cho mỗi sinh viên 1 điểm toán\n 6.Thêm thuộc tính tổng điểm 3 môn\n 7.Tính tổng điểm của các sinh viên\n 8.Sắp xếp danh sách sinh viên theo tổng điểm tăng dần \n 9.Tính điểm trung bình của các sinh viên\n 10.Xóa sinh viên \n 11.Thoát ');
+    
+    const menu = `== QUẢN LÝ SINH VIÊN ==
+    1. Nhập dữ liệu
+    2. Xuất dữ liệu
+    3. Tìm sinh viên
+    4. Lọc ra các sinh viên xếp loại giỏi
+    5. Cộng cho mỗi sinh viên 1 điểm toán
+    6. Thêm thuộc tính tổng điểm 3 môn
+    7. Tính tổng điểm của các sinh viên
+    8. Sắp xếp danh sách sinh viên theo tổng điểm tăng dần
+    9. Tính điểm trung bình của các sinh viên
+    10. Xóa sinh viên
+    0. Thoát
+    Nhập thao tác lựa chọn:`;
+
     try {
         if (isNaN(option)) throw 'Vui lòng nhập đúng lựa chọn';
 
@@ -117,17 +132,17 @@ function enter() {
     menu();
 }
 function show() {
-    console.log(students);
+    console.table(students);
     menu();
 }
 function search() {
     var searchId = parseInt(prompt('Nhập id của sinhv viên'));
-    var result = students.find(({ id }) => id == searchId);
+    var result = students.find(({id}) => id == searchId);
     if (!result) {
         console.log('Không tìm thấy');
     }
     else {
-        console.log(result);
+        console.table(result);
     }
     menu();
 }
@@ -146,31 +161,29 @@ function buffPoint() {
 }
 function addAttr() {
     students.map(function (student) {
-        student.avg = avg(student.toan,student.ly,student.hoa);
-        
+        student.avg = avg(student.toan, student.ly, student.hoa);
+
     });
     menu();
 }
 function calculate() {
     var value = students.reduce(function (total, student) {
-       return total + avg(student.toan,student.ly,student.hoa);
+        return total + avg(student.toan, student.ly, student.hoa);
     }, 0);
-    console.log('Điểm của tất cả các sinh viên là ' +value);
+    console.log('Điểm của tất cả các sinh viên là ' + value);
     menu();
 }
-function ASC()
-{
-    console.log(students.sort(function(studentA,studentB){
-        return  avg(studentA.toan,studentA.ly,studentA.hoa) - avg(studentB.toan,studentB.ly,studentB.hoa); ;
+function ASC() {
+    console.log(students.sort(function (studentA, studentB) {
+        return avg(studentA.toan, studentA.ly, studentA.hoa) - avg(studentB.toan, studentB.ly, studentB.hoa);;
     }));
     menu();
 }
-function average()
-{
+function average() {
     var value = students.reduce(function (total, student) {
-        return total + avg(student.toan,student.ly,student.hoa);
-     }, 0);
-    console.log('Điểm trung bình của các sinh viến '+value/count(students));
+        return total + avg(student.toan, student.ly, student.hoa);
+    }, 0);
+    console.log('Điểm trung bình của các sinh viến ' + value / count(students));
 };
 function destroy() {
     var searchId = parseInt(prompt('Nhập id của sinhv viên cần xóa'));
