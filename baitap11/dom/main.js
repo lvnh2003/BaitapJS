@@ -59,16 +59,27 @@ function reset()
 
 
 function editStudent(id) {
-
-    var name = prompt('Sửa lại tên sinh viên: ');
-    for (var i in students) {
-        if (students[i].id == id) {
-            students[i].name = name;
-            break;
+    var student = students.find(function (st) {
+        return st.id === id;
+    });
+    var name = document.querySelector('input[name="name"]');
+    name.value=student.name;
+    
+    var accept= document.getElementById('update');
+    accept.onclick=function()
+    {
+        
+        for (var i in students) {
+            if (students[i].id == id) {
+                students[i].name = name.value;
+                break;
+            }
         }
+        
+        reset();
     }
     
-    reset();
+    
 }
 
 function deleteStudent(id) {
@@ -81,8 +92,9 @@ function deleteStudent(id) {
     }
 }
 function add() {
+    var name = document.querySelector('input[name="name"]').value;
     var id = students.length + 1;
-    var name = prompt('Tên sinh viên: ');
+   
     var newStudent = {
         id: id,
         name: name
