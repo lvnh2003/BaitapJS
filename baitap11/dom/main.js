@@ -43,7 +43,7 @@ function reset()
     var content='';
     var tableElemnet = document.getElementById('table').getElementsByTagName('tbody')[0];
     students.forEach(student => {
-        // nó không có cho đặt id cho thẻ tr anh
+        
         content = content+ `    
         <tr id="student-${student.id}"> 
             <td>${student.id}</td>
@@ -63,9 +63,11 @@ function editStudent(id) {
         return st.id === id;
     });
     var name = document.querySelector('input[name="name"]');
+    
     name.value=student.name;
     
     var accept= document.getElementById('update');
+    accept.style.visibility="visible";
     accept.onclick=function()
     {
         
@@ -77,6 +79,8 @@ function editStudent(id) {
         }
         
         reset();
+        name.value="";
+        accept.style.visibility="hidden";
     }
     
     
@@ -92,7 +96,9 @@ function deleteStudent(id) {
     }
 }
 function add() {
-    var name = document.querySelector('input[name="name"]').value;
+    var nameElement = document.querySelector('input[name="name"]');
+    var name= nameElement.value;
+
     var id = students.length + 1;
    
     var newStudent = {
@@ -102,6 +108,7 @@ function add() {
     students.push(newStudent);
 
     reset();
+    nameElement.value="";
 }
 
 
