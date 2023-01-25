@@ -50,7 +50,9 @@ function render() {
                 <td> ${hoa.tenHoa} </td>
                 <td> ${hoa.loaiHoa} </td>
                 <td> <img src="${hoa.hinhAnh} " > </td>
-                <td> <a id="edit" href="#" onclick="edit(${hoa.id})">  Sửa  <img src="./images/pencil.gif">  </a>  <a href="#"  onclick="destroy(${hoa.id})">  Xóa <img src="./images/bin.gif"> </a>  </td>
+                <td> <a id="edit" href="#" onclick="edit(${hoa.id})">  Sửa 
+                <img src="./images/pencil.gif">  </a>  <a href="#"  onclick="destroy(${hoa.id})">  Xóa 
+                <img src="./images/bin.gif"> </a>  </td>
             </tr>    
         `
     })
@@ -69,9 +71,9 @@ document.getElementById('add').onclick = function () {
 
 }
 document.querySelector('#acceptadd').onclick = function () {
-
-
-    // var path = document.querySelector('input[name=hinhAnh]').attributes('src');
+    validation(nameFl);
+    validation(type);
+    var path = document.querySelector('input[name=hinhAnh]');
     var check = true;
     if (validation(nameFl)) {
         check = false;
@@ -82,10 +84,10 @@ document.querySelector('#acceptadd').onclick = function () {
     if (check) {
         var newFl =
         {
-            id: listHoa.length + 1,
+            id: listHoa[listHoa.length - 1].id + 1,
             tenHoa: nameFl.value,
             loaiHoa: type.value,
-            hinhAnh: null
+            hinhAnh: path.value
         }
         listHoa.push(newFl);
         clear();
@@ -119,9 +121,10 @@ function edit(id) {
             check = false;
         }
         if (check) {
-        listHoa.map(hoa => hoa.id == id ? [hoa.tenHoa = nameFl.value, hoa.loaiHoa = type.value] : hoa);
-        clear();
-        render();
+            listHoa.map(hoa => hoa.id == id ? [hoa.tenHoa = nameFl.value, hoa.loaiHoa = type.value] : hoa);
+            
+            form.style.display = 'none';
+            render();
         }
     }
 
@@ -129,9 +132,9 @@ function edit(id) {
 function destroy(id) {
 
     if (confirm('Xác nhận xóa')) {
-        var idx = listHoa.findIndex((hoa) => { return hoa.id == id });
+        var idx = listHoa.findIndex((hoa) => { return hoa.id === id });
         listHoa.splice(idx, 1);
-        // document.getElementById('fl-'+idx).remove();
+        document.getElementById('fl-' + id).remove();
     }
 }
 nameFl.onblur = function () {
