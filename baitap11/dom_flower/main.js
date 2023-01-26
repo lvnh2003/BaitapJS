@@ -61,16 +61,17 @@ function render() {
 
 var form = document.getElementById('form');
 var accept = document.getElementById('update');
+var add= document.getElementById('acceptadd');
 var editBtn = document.getElementById('edit');
 var nameFl = document.querySelector('input[name=tenHoa]');
 var type = document.querySelector('input[name=loaiHoa]');
 document.getElementById('add').onclick = function () {
     show();
     accept.remove();
-
+    form.appendChild(add);
 
 }
-document.querySelector('#acceptadd').onclick = function () {
+add.onclick = function () {
     validation(nameFl);
     validation(type);
     var path = document.querySelector('input[name=hinhAnh]');
@@ -106,7 +107,7 @@ function clear() {
     type.value = "";
 }
 function edit(id) {
-
+    add.remove();
     show();
     var hoaSearch = listHoa.find((hoa) => { return hoa.id == id });
     nameFl.value = hoaSearch.tenHoa;
