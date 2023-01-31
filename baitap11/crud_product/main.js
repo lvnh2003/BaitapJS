@@ -9,11 +9,12 @@ const PRODUCTS = [
 
 render(PRODUCTS);
 
-document.getElementById('search').oninput=function()
-    {
-       var newValue= PRODUCTS.filter( prodcut => prodcut.name.toLowerCase().includes(this.value.toLowerCase()) );
-        render(newValue);
-    }
+document.getElementById('search').oninput = function () {
+    var newValue = PRODUCTS.filter(prodcut => prodcut.name.toLowerCase().includes(this.value.toLowerCase()));
+    render(newValue);
+    filterProduct();
+
+}
 var table = document.getElementById('table');
 
 function render(prodcuts) {
@@ -21,7 +22,7 @@ function render(prodcuts) {
     var content = ` <tr>
                         <th> Name </th > <th> Price </th>
                     </tr>`;
-    
+
     prodcuts.forEach((prodcut) => {
         if (cmpCategory != prodcut.category) {
             cmpCategory = prodcut.category;
@@ -29,7 +30,7 @@ function render(prodcuts) {
                             <td colspan=2>${cmpCategory} </td>
                         </tr>`;
         }
-        content += `<tr style="${!prodcut.stocked ?  'color: red' : ''} " ${!prodcut.stocked ? 'class="notinstock"': ""}> 
+        content += `<tr style="${!prodcut.stocked ? 'color: red' : ''} " ${!prodcut.stocked ? 'class="notinstock"' : ""}> 
                     <td> ${prodcut.name} </td>
                     <td> ${prodcut.price} </td>
                 </tr>`
@@ -40,22 +41,20 @@ function render(prodcuts) {
 
 const checkbox = document.getElementById('myCheckbox');
 
-checkbox.onchange= function()
-{
-    var elx= document.getElementsByClassName('notinstock');
-    if(this.checked)
-    {
-      
-       for(i = 0; i < elx.length; i++) {
-        elx[i].hidden=true;
-        }
-    
-    }
-    else{
-      
-        for(i = 0; i < elx.length; i++) {
-            elx[i].hidden=false;
-            }
-    }
-}
+function filterProduct(){
+    var elx = document.getElementsByClassName('notinstock');
+    if (checkbox.checked) {
 
+        for (i = 0; i < elx.length; i++) {
+            elx[i].hidden = true;
+        }
+
+    }
+    else {
+
+        for (i = 0; i < elx.length; i++) {
+            elx[i].hidden = false;
+        }
+    }
+
+}
