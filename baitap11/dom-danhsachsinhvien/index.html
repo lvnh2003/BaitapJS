@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DANH SÁCH SINH VIÊN</title>
+</head>
+
+<body>
+    <h1>Danh sách sinh viên</h1>
+    <a href="#" id="add">Thêm</a>
+    <table id="tbl" border="1px" style="width: 400px"></table>
+    <br /><br />
+   
+    <form id="myform">
+        <label for="name">Tên sinh viên</label>
+        <input type="text" id="name" name="name" placeholder="Nhập tên sinh viên"><br /><br />
+        <label for="class">Lớp</label>
+        <select name="class" id="class"></select><br /><br />
+        <input type="submit" value="Thêm">
+        <button type="submit" id="acceptEdit" style="display: none;">Sửa </button>
+        <p class="message" style="display: none;"> Không được bỏ trống</p>
+    </form>
+
+    <script src="main2.js"></script>
+</body>
+
+</html>
