@@ -18,8 +18,8 @@ document.getElementById('search').oninput = function () {
 var table = document.getElementById('table');
 
 function render(prodcuts) {
-    var cmpCategory = '';
-    var content = ` <tr>
+    var cmpCategory = '';k
+    var content = ` <tr>k
                         <th> Name </th > <th> Price </th>
                     </tr>`;
 
