@@ -52,3 +52,7 @@ const classList = [
 - Hiển thị danh sách sinh viên theo dạng bảng như sau:
 
 ![alt text](image.jpg)
+
+bắt được sự kiện submit của form
+validate khi người dùng sử dụng form 
+    

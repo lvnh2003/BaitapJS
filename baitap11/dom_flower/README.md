@@ -31,3 +31,5 @@ const listHoa = [
         hinhAnh: 'images/tmp/hoa5.jpg'
     }
 ]
+![alt text](image.jpg)
+sử dụng forEach để tạo ra các element <td> có giá trị riêng biệt
